@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load widget_tweaks %}
 {% block content %}
 <!-- Content -->
     <div class="page-content bg-white">
@@ -32,8 +34,8 @@
 					<div class="col-md-12 m-b30">
 						<div class="p-a30 border-1  max-w500 m-auto">
 							<div class="tab-content">
-								<form id="login" class="tab-pane active">
-									<h4 class="font-weight-700">PERSONAL INFORMATION</h4>
+								<form id="login" action="{% url 'singupemployers' %}" method="POST" class="tab-pane active">
+									<!-- <h4 class="font-weight-700">PERSONAL INFORMATION</h4>
 									<p class="font-weight-600">If you have an account with us, please log in.</p>
 									<div class="form-group">
 										<label class="font-weight-700">First Name *</label>
@@ -53,7 +55,18 @@
 									</div>
 									<div class="text-left">
 										<button class="site-button button-lg outline outline-2">CREATE</button>
-									</div>
+									</div> -->
+									{% csrf_token %}
+                         {% for field in form.visible_fields %}
+                           <div class="form-group">
+                               {{ field.label_tag }}
+                                  {% render_field field class="form-control" %}
+                                    {% for error in field.errors %}
+                                      <span style="color:red">{{ error }}</span>
+                                    {% endfor %}
+                         {% endfor %}
+                             <input type="submit" value="Register" class="btn btn-block btn-primary">
+                           </div>
 								</form>
 							</div>
 						</div>

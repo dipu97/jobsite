@@ -6,6 +6,8 @@ from django.db import models
 class User(AbstractUser):
     is_job_seekers = models.BooleanField(default=True)
     is_employeers = models.BooleanField(default=False)
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
 
 class JobSeekers(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
@@ -23,5 +25,4 @@ class Employeers(models.Model):
     company_description = models.TextField(null=True,blank=True)
     company_type = models.CharField(max_length=250,blank=True,null=True)
     website_url = models.CharField(max_length=250,blank=True,null=True)
-    contact = models.CharField(max_length=250,blank=True,null=True)
-
+    contact = models.IntegerField(max_length=12,blank=True,null=True)
