@@ -13,3 +13,4 @@ class JobPost(models.Model):
     salary = models.DecimalField(max_digits=7,decimal_places=2,null=True,blank=True)
     benefits = models.TextField(null=True,blank=True)
     job_nature = models.CharField(max_length=200,null=True,blank=True)
+    is_published=models.BooleanField(default=False)
