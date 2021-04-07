@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
+{% load widget_tweaks %}
+
 {% block content %}
 
 
@@ -34,8 +36,8 @@
 					<div class="max-w500 m-auto m-b30">
 						<div class="p-a30 border-1 seth">
 							<div class="tab-content nav">
-								<form id="login" class="tab-pane active col-12 p-a0 ">
-									<h4 class="font-weight-700">LOGIN</h4>
+								<form id="login" action="{% url 'login' %}" method="POST" class="tab-pane active col-12 p-a0 ">
+									<!-- <h4 class="font-weight-700">LOGIN</h4>
 									<p class="font-weight-600">If you have an account with us, please log in.</p>
 									<div class="form-group">
 										<label class="font-weight-700">E-MAIL *</label>
@@ -60,7 +62,23 @@
 									<div class="text-left">
 										<a class="site-button outline gray button-lg" data-toggle="tab" href="#login">Back</a>
 										<button class="site-button pull-right button-lg">Submit</button>
-									</div>
+									</div> -->
+
+
+									{% csrf_token %}
+                         {% for field in form.visible_fields %}
+                           
+                               {{ field.label_tag }}
+                                  {% render_field field class="form-control" %}
+                                    {% if messages%}
+                                      {% for message in messages %}
+                                        <span style="color:red">{{ message }}</span>
+                                      {% endfor %}
+                                     {% endif %}
+                         {% endfor %}
+                         <br>
+                             <input type="submit" value="Login" class="btn btn-block btn-primary">
+                        
 								</form>
 							</div>
 						</div>

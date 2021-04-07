@@ -1,9 +1,10 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth.models import User
 from django.db import transaction
 
 from .models import *
+from django.contrib.auth.backends import AllowAllUsersModelBackend
 
 
 class SignUpFormEmployers(UserCreationForm):
@@ -69,3 +70,5 @@ class SignUpFormUsers(UserCreationForm):
         jobseekers.phone=self.cleaned_data.get('phone')
         jobseekers.save()
         return jobseekers
+
+
