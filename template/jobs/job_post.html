@@ -37,8 +37,8 @@
 				<div class="container">
 					<form action="{% url 'job_post' %}" method="post">{% csrf_token %}
 						<div class="form-group">
-							<label> Job Title</label>
-							<input type="text" name="name" required disabled value="{{ user.username }}">
+							<label> User</label>
+							<input type="text" name="name" class="form-control" required disabled value="{{ user.username }}">
 						</div>
 						<div class="form-group">
 							<label> Job Title</label>

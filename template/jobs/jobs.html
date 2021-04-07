@@ -26,11 +26,13 @@
         <div class="section-full bg-white browse-job content-inner-2">
             <div class="container">
                 <div class="row">
-                    {% if jobs %}
-                    {% for JobPost in jobs %}
+                    
                     <div class="col-xl-9 col-lg-8">
                         <h5 class="widget-title font-weight-700 text-uppercase">Recent Jobs</h5>
+
                         <ul class="post-job-bx">
+                            {% if jobs %}
+                            {% for JobPost in jobs %}
                             <li>
                                 <a href="{% url 'job_index' JobPost.id %}">
                                     <div class="d-flex m-b30">
