@@ -10,12 +10,19 @@ from django.contrib.auth import login
 class signupEmployers(CreateView):
     model = User
     form_class = SignUpFormEmployers
-    template_name = 'accounts/register.html'
+    template_name = 'accounts/employers/register.html'
 
     def form_valid(self, form):
         user = form.save()
         login(self.request, user)
         return redirect('/')
 
-def signupUser(request):
-    pass 
+class signupUser(CreateView):
+    model = User
+    form_class = SignUpFormUsers
+    template_name = 'accounts/jobseekers/register.html'
+
+    def form_valid(self, form):
+        user = form.save()
+        login(self.request, user)
+        return redirect('/')
