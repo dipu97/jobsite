@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+  <!-- Content -->
+    <div class="page-content bg-white">
+        <!-- inner page banner -->
+        <div class="dez-bnr-inr overlay-black-dark" style="background-image:url({% static 'images/banner/bnr1.jpg' %})">
+            <div class="container">
+                <div class="dez-bnr-inr-entry">
+                    <h1 class="text-white">Post Your Job Here</h1>
+					<!-- Breadcrumb row -->
+					<div class="breadcrumb-row">
+						<ul class="list-inline">
+							<li><a href="{% url 'index' %}}">Home</a></li>
+							<li>Post Job</li>
+						</ul>
+					</div>
+					<!-- Breadcrumb row END -->
+                </div>
+            </div>
+        </div>
+        <!-- inner page banner END -->
+        <!-- contact area -->
+        <div class="content-block">
+			<!-- Submit Resume -->
+			<div class="section-full bg-white submit-resume content-inner-2">
+				<div class="container">
+					<form action="{% url 'job_post' %}" method="post">{% csrf_token %}
+						<div class="form-group">
+							<label> Job Title</label>
+							<input type="text" name="name" required disabled value="{{ user.username }}">
+						</div>
+						<div class="form-group">
+							<label> Job Title</label>
+							<input type="text" id="title" name="title" class="form-control" placeholder="Job Title">
+						</div>
+						<div class="form-group">
+							<label>Job Description</label>
+							<input type="text" id="desc" name="desc" class="form-control" placeholder="Description">
+						</div>
+<!--						<div class="form-group">-->
+<!--							<label>Region</label>-->
+<!--							<select>-->
+<!--								<option>New York</option>-->
+<!--								<option>London</option>-->
+<!--								<option>Los Angeles</option>-->
+<!--							</select>-->
+<!--						</div>-->
+						<div class="form-group">
+							<label>Job Requirements</label>
+							<input type="text" id="requirements" name="requirements" class="form-control" placeholder="Job Requirements">
+						</div>
+						<div class="form-group">
+							<label>Responsibilities</label>
+							<input type="text" id="res" name="res" class="form-control" placeholder="Job Responsibilities">
+						</div>
+						<div class="form-group">
+							<label>Experience</label>
+							<input type="text" id="experience" name="experience" class="form-control" placeholder="Years of Experience Ex: 4 years">
+						</div>
+<!--						<div class="form-group">-->
+<!--							<label>Photo (optional)</label>-->
+<!--							<div class="custom-file">-->
+<!--								<input type="file" class="site-button" id="customFile">-->
+<!--							</div>-->
+<!--						</div>-->
+<!--						<div class="form-group">-->
+<!--							<label>Video (optional)</label>-->
+<!--							<input type="text" class="form-control" placeholder="Video Link">-->
+<!--						</div>-->
+						<div class="form-group">
+							<label>Salary</label>
+							<input type="text" id="salary" name="salary" class="form-control" placeholder="Salary Per Month Ex: $500">
+						</div>
+						<div class="form-group">
+							<label>Job Benefit</label>
+							<input type="text" id="benefit" name="benefit" class="form-control" placeholder="Benefits">
+						</div>
+<!--						<div class="form-group">-->
+<!--							<label>Resume category</label>-->
+<!--							<select>-->
+<!--								<option>Designe</option>-->
+<!--								<option>Construct</option>-->
+<!--								<option>Food Service</option>-->
+<!--							</select>-->
+<!--						</div>-->
+						<div class="form-group">
+							<label>Job Nature</label>
+							<input type="text" id="nature" name="nature" class="form-control" placeholder="Nature of Job E#x: Part-Time, Full-Time,Contractual">
+						</div>
+						<div class="form-group">
+							<label>Location</label>
+							<input type="text" id="location" name="location" class="form-control" placeholder="Job Location">
+						</div>
+						<div class="form-group">
+							<label>Deadline</label>
+							<input type="datetime-local" id="deadline" name="deadline" class="form-control" placeholder="Job Application deadline EX:26-10-2021">
+						</div>
+						<div class="form-group">
+							<label>Application Process</label>
+							<input type="text" id="process" name="process" class="form-control" placeholder="Application Process">
+						</div>
+						<div class="form-group">
+							<label>Skills (optional)</label>
+							<input type="text" id="skills" name="skills" class="form-control" placeholder="Your Skills">
+						</div>
+						<button type="submit" class="site-button">Submit</button>
+					</form>
+				</div>
+			</div>
+            <!-- Submit Resume END -->
+		</div>
+    </div>
+    <!-- Content END-->
+</body>
+</html>
+{% endblock %}

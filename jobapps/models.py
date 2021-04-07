@@ -14,3 +14,11 @@ class JobPost(models.Model):
     benefits = models.TextField(null=True,blank=True)
     job_nature = models.CharField(max_length=200,null=True,blank=True)
     is_published=models.BooleanField(default=False)
+    location=models.CharField(max_length=255,null=True,blank=True)
+    created_at=models.DateTimeField(auto_now_add=True)
+    deadline=models.DateTimeField(auto_now_add=False)
+    application_process=models.CharField(max_length=255,null=True,blank=True)
+    skills=models.CharField(max_length=255,null=True,blank=True)
+
+    def __str__(self):
+        return self.title
