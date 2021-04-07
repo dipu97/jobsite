@@ -20,6 +20,7 @@ class JobSeekers(models.Model):
     resume = models.FileField(upload_to='resume/%y/%m/%d',blank=True)
     phone = models.IntegerField(blank=True,null=True)
     created_at = models.DateTimeField(auto_now_add=True)
+    
 class Employeers(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     company_name = models.CharField(max_length=30,null=True,blank=True)
@@ -27,5 +28,5 @@ class Employeers(models.Model):
     company_description = models.TextField(null=True,blank=True)
     company_type = models.CharField(max_length=250,blank=True,null=True)
     website_url = models.CharField(max_length=250,blank=True,null=True)
-    contact = models.IntegerField(max_length=12,blank=True,null=True)
+    contact = models.IntegerField(blank=True,null=True)
     created_at = models.DateTimeField(auto_now_add=True)
