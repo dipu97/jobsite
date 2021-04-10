@@ -30,9 +30,15 @@
 
         <div class="extra-nav">
           <div class="extra-cell">
+            {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}" class="site-button"
+              ><i class="fa fa-lock"></i> Logout</a
+            >
+            {% else %}
             <a href="{% url 'login' %}" class="site-button"
               ><i class="fa fa-lock"></i> Login</a
             >
+            {% endif %}
           </div>
         </div>
         <!-- Quik search -->

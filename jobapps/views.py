@@ -4,6 +4,8 @@ from .models import *
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+
 # Create your views here.
 def jobs(request):
     number = JobPost.objects.all().count()
@@ -34,6 +36,7 @@ def job_index(request,JobPost_id):
 # def job_post(request):
 #
 #     return render(request,'jobs/job_post.html')
+@login_required
 
 def job_post(request):
     if request.method=='POST':
