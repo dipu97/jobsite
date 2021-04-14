@@ -20,6 +20,8 @@ class JobPost(models.Model):
     application_process=models.CharField(max_length=255,null=True,blank=True)
     skills=models.CharField(max_length=255,null=True,blank=True)
     type=models.CharField(max_length=255,null=True,blank=True)
+    company_logo=models.ImageField(null=True,upload_to="photos/logo/%y/%m/%d")
+    education=models.CharField(max_length=255,null=True,blank=True)
 
     def __str__(self):
         return self.title

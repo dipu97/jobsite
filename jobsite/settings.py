@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'accounts',
     'crispy_forms',
     'widget_tweaks',
+    'django.contrib.humanize',
 ]
 SITE_ID = 1
 MIDDLEWARE = [

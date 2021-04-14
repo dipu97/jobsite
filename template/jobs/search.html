@@ -1,20 +1,23 @@
 {% extends 'base.html' %}
 {% block content %}
 {% load static %}
+
 <!-- Content -->
 <div class="page-content bg-white">
     <!-- inner page banner -->
     <div class="dez-bnr-inr overlay-black-middle" style="background-image:url({% static 'images/banner/bnr1.jpg' %})">
-        {% include 'jobs/search_form.html' %}
+
         <div class="container">
             <div class="dez-bnr-inr-entry">
                 <h1 class="text-white">Browse Jobs</h1>
                 <!-- Breadcrumb row -->
                 <div class="breadcrumb-row">
+
                     <ul class="list-inline">
                         <li><a href="{% url 'index' %}">Home</a></li>
                         <li>Browse Jobs</li>
                     </ul>
+                    {% include 'jobs/search_form.html' %}
                 </div>
                 <!-- Breadcrumb row END -->
             </div>
@@ -23,13 +26,14 @@
     <!-- inner page banner END -->
     <!-- contact area -->
     <div class="content-block">
+        <h5 class="widget-title font-weight-700 text-uppercase">Search Results</h5>
         <!-- Browse Jobs -->
         <div class="section-full bg-white browse-job content-inner-2">
             <div class="container">
                 <div class="row">
-                    
+
                     <div class="col-xl-9 col-lg-8">
-                        <h5 class="widget-title font-weight-700 text-uppercase">Recent Jobs</h5>
+
 
                         <ul class="post-job-bx">
                             {% if jobs %}
@@ -64,6 +68,8 @@
 
 
                         {% endfor %}
+                        {% else %}
+                        <h5 class="widget-title font-weight-700 text-uppercase">No Jobs Found</h5>
                         {% endif %}
                         <div class="pagination-bx m-t30">
                             <ul class="pagination">
