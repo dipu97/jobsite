@@ -108,3 +108,9 @@ def search(request):
     }
 
     return render(request,'jobs/search.html',context)
+
+
+@login_required
+def ApplyForJob(request):
+    
+    return render(request,'jobs/apply_for_job_html')
