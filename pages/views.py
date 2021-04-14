@@ -1,9 +1,12 @@
 from django.shortcuts import render
 from jobapps.model_choices import *
+from jobapps.models import JobPost
 # Create your views here.
 def index(request):
+    latest=JobPost.objects.filter(is_published=True).order_by('-created_at')[:4]
     context={
         'Category': Category,
+        'latest':latest,
     }
     return render(request,'pages/index.html',context)
 
