@@ -31,7 +31,7 @@
                             <div class="row">
                                 <div class="col-lg-12 col-md-6">
                                     <div class="m-b30">
-                                        <img src="{{JobPost.company_logo}}" alt="">
+                                        <img src="{{ job_index.company_logo.url }}" alt="">
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-md-6">
@@ -79,6 +79,7 @@
                             <div class="dez-divider divider-2px bg-gray-dark mb-4 mt-0"></div>
                             <ul class="list-num-count no-round">
                               <p>{{job_index.job_requirements}}</p>
+                                <p>{{job_index.skills}}</p>
                             </ul>
                             <a href="#" class="site-button">Apply This Job</a>
                         </div>

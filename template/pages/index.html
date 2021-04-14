@@ -40,7 +40,7 @@
                                 <a href="{% url 'job_index' j.id %}">
                                     <div class="d-flex m-b30">
                                         <div class="job-post-company">
-                                            <span><img src="{{j.company_logo}}"/></span>
+                                            <span><img src="{{j.company_logo.url}}"/></span>
                                         </div>
                                         <div class="job-post-info">
                                             <h4>{{j.title}}</h4>
