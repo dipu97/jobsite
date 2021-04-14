@@ -26,15 +26,15 @@ class signupUser(CreateView):
     def form_valid(self, form):
         user = form.save()
         # login(self.request, user)
-        return redirect('/')
+        return redirect('/accounts/login/')
 
 def login_request(request):
     if request.method=='POST':
         form = AuthenticationForm(data=request.POST)
         if form.is_valid():
-            email = form.cleaned_data.get('email')
+            username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password')
-            user = authenticate(email=email, password=password)
+            user = authenticate(username=username, password=password)
             if user is not None :
                 login(request,user)
                 return redirect('/')
