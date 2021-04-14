@@ -10,68 +10,68 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 def jobs(request):
     number = JobPost.objects.all().count()
-    dict_method=request.GET.copy()
+    dict_method = request.GET.copy()
     jobs = JobPost.objects.filter(is_published=True)
-    paginator=Paginator(jobs,4)
-    page=request.GET.get('page',1)
+    paginator = Paginator(jobs, 4)
+    page = request.GET.get('page', 1)
     try:
-        paged_jobs=paginator.get_page(page)
+        paged_jobs = paginator.get_page(page)
     except PageNotAnInteger:
-        paged_jobs=paginator.page(1)
+        paged_jobs = paginator.page(1)
     except EmptyPage:
-        paged_jobs=paginator.page(paginator.num_pages)
+        paged_jobs = paginator.page(paginator.num_pages)
     context = {
         'jobs': paged_jobs,
-        'count':number,
-        'get_method':dict_method,
+        'count': number,
+        'get_method': dict_method,
 
     }
     return render(request, 'jobs/jobs.html', context)
 
 
-def job_index(request,JobPost_id):
-
+def job_index(request, JobPost_id):
     job_index_ = JobPost.objects.get(id=JobPost_id)
-    return render (request, 'jobs/job_details.html', {'job_index': job_index_})
+    return render(request, 'jobs/job_details.html', {'job_index': job_index_})
+
 
 # def job_post(request):
 #
 #     return render(request,'jobs/job_post.html')
 @login_required
-
 def job_post(request):
-    if request.method=='POST':
-        dict_method=request.POST.copy()
-        name=dict_method.get('name')
-        title=dict_method.get('title')
-        desc=dict_method.get('desc')
-        requirements=dict_method.get('requirements')
-        res=dict_method.get('res')
+    if request.method == 'POST':
+        dict_method = request.POST.copy()
+        name = dict_method.get('name')
+        title = dict_method.get('title')
+        desc = dict_method.get('desc')
+        requirements = dict_method.get('requirements')
+        res = dict_method.get('res')
         experience = dict_method.get('experience')
-        salary=dict_method.get('salary')
+        salary = dict_method.get('salary')
         benefit = dict_method.get('benefit')
-        nature=dict_method.get('nature')
-        location=dict_method.get('location')
-        deadline=dict_method.get('deadline')
-        process=dict_method.get('process')
-        skills=dict_method.get('skills')
+        nature = dict_method.get('nature')
+        location = dict_method.get('location')
+        deadline = dict_method.get('deadline')
+        process = dict_method.get('process')
+        skills = dict_method.get('skills')
         JobPost.objects.create(user=name,
-                            title=title,
-                            job_description=desc,
-                            job_requirements=requirements,
-                            responsibilities=res,
-                            exprience=experience,
-                            salary=salary,
-                            benefits=benefit,
-                            job_nature=nature,
-                            location=location,
-                            deadline=deadline,
-                            application_process=process,
+                               title=title,
+                               job_description=desc,
+                               job_requirements=requirements,
+                               responsibilities=res,
+                               exprience=experience,
+                               salary=salary,
+                               benefits=benefit,
+                               job_nature=nature,
+                               location=location,
+                               deadline=deadline,
+                               application_process=process,
                                skills=skills,
-                            )
-        messages.success(request,'Job Posted Successfully')
+                               )
+        messages.success(request, 'Job Posted Successfully')
         return HttpResponseRedirect(reverse('job_post'))
-    return render(request,'jobs/job_post.html')
+    return render(request, 'jobs/job_post.html')
+
 
 def search(request):
     dict_method = request.GET.copy()
@@ -88,8 +88,8 @@ def search(request):
     except EmptyPage:
         paged_jobs = paginator.page(paginator.num_pages)
     if 'Keyword' is not None:
-        Keyword=dict_method.get('Keyword')
-        jobs=JobPost.objects.filter(title__icontains=Keyword)
+        Keyword = dict_method.get('Keyword')
+        jobs = JobPost.objects.filter(title__icontains=Keyword)
 
     if 'Location' in dict_method:
         Location = dict_method.get('Location')
@@ -102,9 +102,36 @@ def search(request):
     context = {
         'jobs': jobs,
         'Category': Category,
-        'get_method':dict_method,
-        'jobss':paged_jobs,
+        'get_method': dict_method,
+        'jobss': paged_jobs,
 
     }
 
-    return render(request,'jobs/search.html',context)
+    return render(request, 'jobs/search.html', context)
+
+
+@login_required
+def applyForJob(request):
+    if request.method == 'POST':
+        dict_method = request.POST.copy()
+        name = dict_method.get('name')
+        email = dict_method.get('email')
+        address = dict_method.get('address')
+        image = dict_method.get('image')
+        resume = dict_method.get('resume')
+        cover_letter = dict_method.get('cover')
+        salary = dict_method.get('salary')
+
+        ApplyForJob.objects.create(user=applier,
+                                   job_id=jobid,
+                                   name=name,
+                                   email=email,
+                                   address=address,
+                                   image=image,
+                                   resume=resume,
+                                   cover_letter=cover_letter,
+                                   salary_exceptation=salary,
+                                   )
+        messages.success(request, 'Job Applied Successfully')
+        return HttpResponseRedirect(reverse('apply_for_job'))
+    return render(request, 'jobs/apply_for_job.html')

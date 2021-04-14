@@ -31,7 +31,11 @@
                             <div class="row">
                                 <div class="col-lg-12 col-md-6">
                                     <div class="m-b30">
+<<<<<<< HEAD
                                         <img src="{{ job_index.company_logo.url }}" alt="">
+=======
+                                        <img src="{{job_index.company_logo.url}}" alt="">
+>>>>>>> 990494755972e5411237afa030abada1f82656fc
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-md-6">
@@ -81,7 +85,7 @@
                               <p>{{job_index.job_requirements}}</p>
                                 <p>{{job_index.skills}}</p>
                             </ul>
-                            <a href="#" class="site-button">Apply This Job</a>
+                            <a href="{% url 'apply_for_job' %}" class="site-button">Apply This Job</a>
                         </div>
                     </div>
                 </div>
@@ -183,7 +187,7 @@
                                         chunks.</p>
                                 </div>
                                 <div class="dez-post-readmore">
-                                    <a href="#" class="site-button outline">Apply Now <i class="ti-arrow-right"></i></a>
+                                    <a href="{% url 'apply_for_job' %}" class="site-button outline">Apply Now <i class="ti-arrow-right"></i></a>
                                 </div>
                             </div>
                         </div>
