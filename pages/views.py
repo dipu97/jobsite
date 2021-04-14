@@ -1,8 +1,11 @@
 from django.shortcuts import render
-
+from jobapps.model_choices import *
 # Create your views here.
 def index(request):
-    return render(request,'pages/index.html')
+    context={
+        'Category': Category,
+    }
+    return render(request,'pages/index.html',context)
 
 def job_details(request):
     return render(request,'jobs/job_details.html')

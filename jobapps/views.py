@@ -1,6 +1,7 @@
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import render
 from .models import *
+from .model_choices import Category
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib import messages
@@ -68,3 +69,39 @@ def job_post(request):
         messages.success(request,'Job Posted Successfully')
         return HttpResponseRedirect(reverse('job_post'))
     return render(request,'jobs/job_post.html')
+
+def search(request):
+    dict_method = request.GET.copy()
+
+    Category = dict_method.get('Category') or None
+
+    jobs = JobPost.objects.filter(is_published=True)
+    paginator = Paginator(jobs, 4)
+    page = request.GET.get('page', 1)
+    try:
+        paged_jobs = paginator.get_page(page)
+    except PageNotAnInteger:
+        paged_jobs = paginator.page(1)
+    except EmptyPage:
+        paged_jobs = paginator.page(paginator.num_pages)
+    if 'Keyword' is not None:
+        Keyword=dict_method.get('Keyword')
+        jobs=JobPost.objects.filter(title__icontains=Keyword)
+
+    if 'Location' in dict_method:
+        Location = dict_method.get('Location')
+        jobs = JobPost.objects.filter(location__icontains=Location)
+
+    if 'Category' in dict_method:
+        Category = dict_method.get('Category')
+        jobs = JobPost.objects.filter(type__icontains=Category)
+
+    context = {
+        'jobs': jobs,
+        'Category': Category,
+        'get_method':dict_method,
+        'jobss':paged_jobs,
+
+    }
+
+    return render(request,'jobs/search.html',context)
