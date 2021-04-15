@@ -37,7 +37,7 @@
                                 <a href="{% url 'job_index' JobPost.id %}">
                                     <div class="d-flex m-b30">
                                         <div class="job-post-company">
-                                            <span><img src="images/logo/icon1.png"/></span>
+                                            <span><img src="{{JobPost.company_logo.url}}"></span>
                                         </div>
                                         <div class="job-post-info">
                                             <h4>{{JobPost.title}}</h4>
@@ -59,11 +59,11 @@
                                     <span class="post-like fa fa-heart-o"></span>
                                 </a>
                             </li>
+                            {% endfor %}
+                            {% endif %}
                         </ul>
 
 
-                        {% endfor %}
-                        {% endif %}
                         <div class="pagination-bx m-t30">
                             <ul class="pagination">
                                 <li class="previous"><a href="#"><i class="ti-arrow-left"></i> Prev</a></li>

@@ -115,15 +115,14 @@ def applyForJob(request):
     if request.method == 'POST':
         dict_method = request.POST.copy()
         name = dict_method.get('name')
-        email = dict_method.get('email')
+        email = dict_method.get('mail')
         address = dict_method.get('address')
         image = dict_method.get('image')
         resume = dict_method.get('resume')
         cover_letter = dict_method.get('cover')
         salary = dict_method.get('salary')
 
-        ApplyForJob.objects.create(user=applier,
-                                   job_id=jobid,
+        ApplyForJob.objects.create(
                                    name=name,
                                    email=email,
                                    address=address,

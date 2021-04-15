@@ -25,71 +25,33 @@
                     </div>
                     <div class="align-self-end">
                         <a href="{% url 'jobs' %}" class="site-button button-sm"
-                        >Browse All Jobs <i class="fa fa-long-arrow-right"></i
-                        ></a>
+                        >Browse All Jobs <i class="fa fa-long-arrow-right"></i></a>
                     </div>
                 </div>
                 <div class="row">
-                    {% if latest %}
-                    {% for j in latest %}
+
                     <div class="col-lg-9">
                         <ul class="post-job-bx">
+                            {% if latest %}
+                            {% for j in latest %}
                             <li>
                                 <a href="{% url 'job_index' j.id %}">
                                     <div class="d-flex m-b30">
                                         <div class="job-post-company">
-                                            <span><img src="{{j.company_logo.url}}"/></span>
+                                            <span><img src="{{j.company_logo.url}}"></span>
                                         </div>
                                         <div class="job-post-info">
                                             <h4>{{j.title}}</h4>
                                             <ul>
-                                                <li>
-                                                    <i class="fa fa-map-marker"></i> {{j.location}}
-                                                </li>
-                                                <li>
-                                                    <i class="fa fa-bookmark-o"></i> {{j.job_nature}}
-                                                </li>
-                                                <li>
-
-                                                    <a href="{% url 'job_index' j.id %}">
-                                                        <div class="d-flex m-b30">
-                                                            <div class="job-post-company">
-                                                                <span><img src="{{j.company_logo.url}}"></span>
-                                                            </div>
-                                                            <div class="job-post-info">
-                                                                <h4>{{j.title}}</h4>
-                                                                <ul>
-                                                                    <li><i class="fa fa-map-marker"></i> {{j.location}}
-                                                                    </li>
-                                                                    <li><i class="fa fa-bookmark-o"></i>
-                                                                        {{j.job_nature}}
-                                                                    </li>
-                                                                    <li><i class="fa fa-clock-o"></i>
-                                                                        {{j.created_at|timesince}}
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                        <div class="d-flex">
-                                                            <div class="job-time mr-auto">
-                                                                <span>{{j.type}}</span>
-                                                            </div>
-                                                            <div class="salary-bx">
-                                                                <span>{{j.salary}}</span>
-                                                            </div>
-                                                        </div>
-                                                        <span class="post-like fa fa-heart-o"></span>
-                                                    </a>
-
-                                                    <i class="fa fa-clock-o"></i>
-                                                    {{j.created_at|timesince}}
-                                                </li>
+                                                <li><i class="fa fa-map-marker"></i>{{j.location}}</li>
+                                                <li><i class="fa fa-bookmark-o"></i> {{j.job_nature}}</li>
+                                                <li><i class="fa fa-clock-o"></i> {{j.created_at | timesince}}</li>
                                             </ul>
                                         </div>
                                     </div>
                                     <div class="d-flex">
                                         <div class="job-time mr-auto">
-                                            <span>{{j.type}}</span>
+                                            <span>{{j.job_nature}}</span>
                                         </div>
                                         <div class="salary-bx">
                                             <span>{{j.salary}}</span>
@@ -98,17 +60,17 @@
                                     <span class="post-like fa fa-heart-o"></span>
                                 </a>
                             </li>
+                            {% endfor %}
+                            {% endif %}
                         </ul>
-                        {% endfor %}
-                        {% endif %}
+
+
                         <div class="m-t30">
                             <div class="d-flex">
                                 <a class="site-button button-sm mr-auto" href="#"
                                 ><i class="ti-arrow-left"></i> Prev</a
                                 >
-                                <a class="site-button button-sm" href="#"
-                                >Next <i class="ti-arrow-right"></i
-                                ></a>
+                                <a class="site-button button-sm" href="#">Next <i class="ti-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -117,12 +79,7 @@
                             <div class="candidates-are-sys m-b30">
                                 <div class="candidates-bx">
                                     <div class="testimonial-pic radius">
-                                        <img
-                                                src="images/testimonials/pic3.jpg"
-                                                alt=""
-                                                width="100"
-                                                height="100"
-                                        />
+                                        <img src="images/testimonials/pic3.jpg" alt="" width="100" height="100"/>
                                     </div>
                                     <div class="testimonial-text">
                                         <p>
