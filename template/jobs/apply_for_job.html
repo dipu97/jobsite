@@ -27,6 +27,10 @@
             <div class="container">
                 <form action="{% url 'apply_for_job' %}" method="post">{% csrf_token %}
                     <div class="form-group">
+                        <label>Job Title</label>
+                        <input type="text" name="job_title"  class="form-control" placeholder="Your Full Name"  value="{{user.username}}">
+                    </div>
+                    <div class="form-group">
                         <label>Your name</label>
                         <input type="text" name="abc"  class="form-control" placeholder="Your Full Name" disabled  value="{{user.username}}">
                     </div>
