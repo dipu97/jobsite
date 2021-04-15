@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from jobapps.model_choices import *
 from jobapps.models import JobPost
+from accounts.models import *
 # Create your views here.
 def index(request):
     latest=JobPost.objects.filter(is_published=True).order_by('-created_at')[:4]
@@ -17,3 +18,11 @@ def register(request):
 
 def login(request):
     return render(request,'accounts/login.html')
+
+def companies(request):
+    company=Employeers.objects.all()
+    print(company)
+    context={
+        'company':company
+    }
+    return render(request,'category/company.html',context)

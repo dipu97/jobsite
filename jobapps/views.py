@@ -118,7 +118,7 @@ def applyForJob(request,id):
     if request.method == 'POST':
         dict_method = request.POST.copy()
         name = dict_method.get('name')
-        email = dict_method.get('email')
+        email = dict_method.get('mail')
         address = dict_method.get('address')
         image = dict_method.get('image')
         resume = dict_method.get('resume')
@@ -128,8 +128,12 @@ def applyForJob(request,id):
         job_id = dict_method.get('job_id') or None
         job_id = JobPost.objects.get(title=job_id)
 
+<<<<<<< HEAD
         ApplyForJob.objects.create(user= user,
                                    job_id=job_id,
+=======
+        ApplyForJob.objects.create(
+>>>>>>> 9a187b16f5b3c3092d75583a1e2f22be1ffa1fe7
                                    name=name,
                                    email=email,
                                    address=address,

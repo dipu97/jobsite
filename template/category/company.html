@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<!-- contact area -->
+<div class="content-block">
+    <!-- Find Job -->
+    <div class="section-full bg-white content-inner">
+        <div class="container">
+
+            <ul id="masonry" class="dez-gallery-listing gallery-grid-4 gallery mfp-gallery">
+                {% if company %}
+                {% for c in company %}
+                <li class="web card-container col-lg-3 col-md-4 col-sm-4">
+                    <div class="dez-gallery-box">
+                        <div class="dez-media overlay-black-light">
+                            <a href="javascript:void(0);"> <img src="{{c.company_logo.url}}" alt=""> </a>
+                            <div class="overlay-icon overlay-logo">
+                                <img src="{{c.company_logo.url}}" alt="">
+                                <p>{{c.company_description}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                {% endfor %}
+                {% endif %}
+
+            </ul>
+        </div>
+    </div>
+    <!-- Find Job END -->
+</div>
+</div>
+<!-- Content END-->
+
+{% endblock %}
