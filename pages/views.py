@@ -21,7 +21,6 @@ def login(request):
 
 def companies(request):
     company=Employeers.objects.all()
-    print(company)
     context={
         'company':company
     }

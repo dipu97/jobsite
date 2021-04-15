@@ -42,7 +42,7 @@
                                 <a href="{% url 'job_index' JobPost.id %}">
                                     <div class="d-flex m-b30">
                                         <div class="job-post-company">
-                                            <span><img src="images/logo/icon1.png"/></span>
+                                            <span><img src="{{JobPost.company_logo.url}}"/></span>
                                         </div>
                                         <div class="job-post-info">
                                             <h4>{{JobPost.title}}</h4>
@@ -64,11 +64,11 @@
                                     <span class="post-like fa fa-heart-o"></span>
                                 </a>
                             </li>
+                            {% endfor %}
+                            {% else %}
                         </ul>
 
 
-                        {% endfor %}
-                        {% else %}
                         <h5 class="widget-title font-weight-700 text-uppercase">No Jobs Found</h5>
                         {% endif %}
                         <div class="pagination-bx m-t30">
