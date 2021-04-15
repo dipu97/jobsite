@@ -18,15 +18,16 @@
                 <!-- extra nav -->
 
                 <div class="extra-nav">
-
-                    <div class="extra-cell">
-                        {% if user.is_authenticated %}
-
-                        <a href="{% url 'logout' %}" class="site-button"><i class="fa fa-lock"></i>Welcome {{user.username}}<br> Logout</a>
+                    <ul class="sub-menu">
+                        <li>
+                            {% if user.is_authenticated %}
+                            <a href="{% url 'jobs' %}" class="dez-page">Welcome {{user.username}} </a>
+                        </li>
+                        <li><a href="{% url 'logout' %}" class="dez-page">Logout</a></li>
                         {% else %}
                         <a href="{% url 'login' %}" class="site-button"><i class="fa fa-lock"></i> Login</a>
                         {% endif %}
-                    </div>
+                    </ul>
 
                 </div>
                 <!-- Quik search -->
@@ -44,30 +45,31 @@
                         </li>
 
                         <li>
+
                             <a href="#">For Candidates <i class="fa fa-chevron-down"></i></a>
                             <ul class="sub-menu">
                                 <li>
                                     <a href="{% url 'jobs' %}" class="dez-page">Browse Job</a>
                                 </li>
                                 <li><a href="{% url 'company' %}" class="dez-page">companies</a></li>
-                                <li>
-                                    <a href="{% url 'job_details' %}" class="dez-page">Job Detail</a>
-                                </li>
                             </ul>
                         </li>
                         <li>
+                            {% if user.is_authenticated %}
+                            {% if request.user.is_employeers %}
                             <a href="#">For Employers <i class="fa fa-chevron-down"></i></a>
                             <ul class="sub-menu">
+
                                 <li>
                                     <a href="browse-candidates.html" class="dez-page">Browse Candidates</a>
                                 </li>
                                 <li>
-                                    <a href="submit-resume.html" class="dez-page">Submit Resume</a>
-                                </li>
-                                <li>
                                     <a href="{% url 'job_post' %}" class="dez-page">Post a Job</a>
                                 </li>
+
                             </ul>
+                            {% endif %}
+                            {% endif %}
                         </li>
                         <li>
                             <a href="#">Pages <i class="fa fa-chevron-down"></i></a>
