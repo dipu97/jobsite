@@ -1,6 +1,8 @@
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import render
-from .models import *
+
+from jobapps.models import *
+from accounts.models import *
 from .model_choices import Category
 from django.http import HttpResponseRedirect
 from django.urls import reverse
@@ -111,7 +113,8 @@ def search(request):
 
 
 @login_required
-def applyForJob(request):
+def applyForJob(request,id):
+    # job_title = JobPost.objects.filter(id=request.data.get())
     if request.method == 'POST':
         dict_method = request.POST.copy()
         name = dict_method.get('name')
@@ -121,9 +124,12 @@ def applyForJob(request):
         resume = dict_method.get('resume')
         cover_letter = dict_method.get('cover')
         salary = dict_method.get('salary')
+        user = User.objects.get(user=email)
+        job_id = dict_method.get('job_id') or None
+        job_id = JobPost.objects.get(title=job_id)
 
-        ApplyForJob.objects.create(user=applier,
-                                   job_id=jobid,
+        ApplyForJob.objects.create(user= user,
+                                   job_id=job_id,
                                    name=name,
                                    email=email,
                                    address=address,
