@@ -113,8 +113,8 @@ def search(request):
 
 
 @login_required
-def applyForJob(request,id):
-    # job_title = JobPost.objects.filter(id=request.data.get())
+def applyForJob(request):
+
     if request.method == 'POST':
         dict_method = request.POST.copy()
         name = dict_method.get('name')

@@ -19,8 +19,8 @@
 
                 <div class="extra-nav">
                     <ul class="sub-menu">
+                        {% if user.is_authenticated %}
                         <li>
-                            {% if user.is_authenticated %}
                             <a href="{% url 'jobs' %}" class="dez-page">Welcome {{user.username}} </a>
                         </li>
                         <li><a href="{% url 'logout' %}" class="dez-page">Logout</a></li>
@@ -123,7 +123,10 @@
                                 </li>
                             </ul>
                         </li>
-
+                        {% if user.is_authenticated %}
+                      
+                        
+                        {% else %}
                         <li>
                             <a href="#">Signup <i class="fa fa-chevron-down"></i></a>
                             <ul class="sub-menu">
@@ -137,6 +140,7 @@
                                 </li>
                             </ul>
                         </li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>
