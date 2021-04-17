@@ -33,6 +33,7 @@ def jobs(request):
 
 def job_index(request, JobPost_id):
     job_index_ = JobPost.objects.get(id=JobPost_id)
+    
     return render(request, 'jobs/job_details.html', {'job_index': job_index_})
 
 
@@ -113,8 +114,11 @@ def search(request):
 
 
 @login_required
-def applyForJob(request):
-
+def applyForJob(request,id):
+    job_qs=JobPost.objects.get(id=id)
+    context={
+        'job_qs':job_qs
+    }
     if request.method == 'POST':
         dict_method = request.POST.copy()
         name = dict_method.get('name')
@@ -139,4 +143,7 @@ def applyForJob(request):
                                    )
         messages.success(request, 'Job Applied Successfully')
         return HttpResponseRedirect(reverse('apply_for_job'))
-    return render(request, 'jobs/apply_for_job.html')
+    return render(request, 'jobs/apply_for_job.html',context)
+
+def JobCatagory(request):
+    pass

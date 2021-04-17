@@ -1,35 +1,31 @@
 {% extends 'base.html' %}
 {% block content %}
 {% load static %}
-<!-- contact area -->
-<div class="content-block">
-    <!-- Find Job -->
-    <div class="section-full bg-white content-inner">
-        <div class="container">
 
-            <ul id="masonry" class="dez-gallery-listing gallery-grid-4 gallery mfp-gallery">
-                {% if company %}
+
+<div class="content-block">
+    <div class="section-full content-inner overlay-white-middle">
+        <div class="container">
+            <div class="row">
+
+
                 {% for c in company %}
-                <li class="web card-container col-lg-3 col-md-4 col-sm-4">
-                    <div class="dez-gallery-box">
-                        <div class="dez-media overlay-black-light">
-                            <a href="javascript:void(0);"> <img src="{{c.company_logo.url}}" alt=""> </a>
-                            <div class="overlay-icon overlay-logo">
-                                <img src="{{c.company_logo.url}}" alt="">
-                                <p>{{c.company_description}}</p>
-                            </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 m-b30">
+                    <div class="icon-bx-wraper p-a30 center bg-gray radius-sm">
+                        <div class="icon-md text-primary m-b20"> <a href="#" class="icon-cell text-primary"><img src="{{ c.company_logo.url }}" alt=""></a> </div>
+                        <div class="icon-content">
+                            <h5 class="dlab-tilte text-uppercase">{{c.company_name}}</h5>
+                            <p>{{c.address }}</p>
+                            <p>0{{c.contact }}</p>
                         </div>
                     </div>
-                </li>
+                </div>
                 {% endfor %}
-                {% endif %}
-
-            </ul>
+              
+            </div>
         </div>
     </div>
-    <!-- Find Job END -->
-</div>
-</div>
-<!-- Content END-->
+    </div>
+
 
 {% endblock %}
