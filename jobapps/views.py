@@ -114,11 +114,11 @@ def search(request):
 
 
 @login_required
-def applyForJob(request,id):
-    job_qs=JobPost.objects.get(id=id)
-    context={
-        'job_qs':job_qs
-    }
+def applyForJob(request):
+    # job_qs=JobPost.objects.get(id=id)
+    # context={
+    #     'job_qs':job_qs
+    # }
     if request.method == 'POST':
         dict_method = request.POST.copy()
         name = dict_method.get('name')
@@ -143,7 +143,24 @@ def applyForJob(request,id):
                                    )
         messages.success(request, 'Job Applied Successfully')
         return HttpResponseRedirect(reverse('apply_for_job'))
-    return render(request, 'jobs/apply_for_job.html',context)
+    return render(request, 'jobs/apply_for_job.html')
 
-def JobCatagory(request):
-    pass
+def aboutUs(request):
+    return render(request,'jobs/about.html')
+
+
+def contactUs(request):
+    if request.POST:
+        name = request.POST['name']
+        email = request.POST['email']
+
+        message = request.POST['message']
+
+        if Contact.objects.filter(email=email).exists():
+            messages.error(request,'you already contact us')
+        else:
+            obj= Contact(name=name,email=email,message=message)
+            obj.save()
+            messages.success(request,'Successfully Send')
+        return HttpResponseRedirect(reverse('contact'))
+    return render(request,'jobs/contact.html')

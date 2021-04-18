@@ -40,3 +40,12 @@ class ApplyForJob(models.Model):
 
     def __str__(self):
         return self.job_id.title
+
+
+class Contact(models.Model):
+    name=models.CharField(max_length=250,blank=False)
+    email=models.EmailField()
+    message=models.TextField()
+
+    def __str__(self):
+        return self.subject
